@@ -2,7 +2,7 @@ name: Deploy React (CRA) to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # change if your default branch is different
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -27,12 +27,16 @@ jobs:
 
       - run: npm ci
 
-      # keep Jekyll from processing the site
+      # prevent Jekyll from interfering
       - run: mkdir -p public && echo > public/.nojekyll
 
-      - run: npm run build
+      
+      - name: Build React app
+        run: npm run build
+        env:
+          CI: false
 
-      # SPA fallback so client-side routes work on refresh
+      # SPA fallback for client-side routes
       - run: cp build/index.html build/404.html
 
       - uses: actions/upload-pages-artifact@v3
