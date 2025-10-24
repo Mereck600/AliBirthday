@@ -204,25 +204,26 @@ export default function App() {
       {showali && (
         <div
           className="ali-overlay"
-          onClick={() => setShowali(false)}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") setShowali(false);
-          }}
+          onClick={() => setShowali(false)}   // click backdrop to close
           role="dialog"
           tabIndex={-1}
         >
-          <div className="ali-card">
-            {aliSrc ? (
-              <ThreeCakes imgs={[ali, ali2, ali3]} onClick={handleCakeClick} />
-            ) : (
-              <div style={{ color: "white", padding: 24, fontSize: 20 }}>
-                ali
-              </div>
-            )}
+          <div
+            className="ali-card"
+            onClick={(e) => e.stopPropagation()} // <-- keep gallery open when clicking cards
+          >
+            <ThreeCakes
+              imgs={[ali, ali2, ali3]}
+              backs={[
+                "I can't wait to see the more of the world with you!",
+                "You are the most incredible person \n I have ever met",
+                "I hope you have an amazing birthday \n I love you"
+              ]}
+            />
           </div>
-
         </div>
       )}
+
     </div>
   );
 }

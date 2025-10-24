@@ -213,14 +213,7 @@ body,
   .fan-stage.fan .card:nth-child(3) { transform: translate3d(100px,0,0) rotate(12deg) scale(.96); }
 }
 
-.three-cakes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 2fr));
-  gap: 16px;
-  align-items: center;
-  justify-items: center;
-  padding: 12px;
-}
+
 
 .cake-card {
   width: 200pxfr;                  /* tweak for your art */
@@ -229,3 +222,74 @@ body,
   transition: transform .25s ease;
 }
 .cake-card:hover { transform: translateY(-4px) scale(1.02); }
+
+/* layout the 3 cards */
+.three-cakes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 2fr));
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  padding: 12px;
+}
+
+/* the card container provides perspective */
+.flip-card {
+  width: 260px;         /* tweak for your images */
+  height: 320px;        /* tweak for your images */
+  perspective: 1000px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* the inner part actually flips */
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(.2,.7,0,1);
+}
+.flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* front/back faces */
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0,0,0,.25);
+}
+
+.flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto; /* or pixelated if you like the style */
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, #1b1b1b, #2a2a2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #fff;
+}
+
+.flip-text {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: pre-wrap; /* allow multi-line messages */
+}
+
+/* small screens */
+@media (max-width: 480px) {
+  .flip-card { width: 140px; height: 180px; }
+  .three-cakes { gap: 12px; }
+}
