@@ -154,3 +154,78 @@ body,
     opacity: 1;
   }
 }
+
+/* Stage holds the three cards stacked initially */
+.fan-stage {
+  position: relative;
+  width: 360px;      /* tweak for your asset size/scale */
+  height: 360px;
+  margin: 0 auto;
+  perspective: 800px;
+}
+
+/* Card baseline style */
+.fan-stage .card {
+  position: absolute;
+  inset: 0;                   /* center all three on top of each other */
+  margin: auto;
+  transform: translate3d(0,0,0) rotate(0deg) scale(1);
+  opacity: 1;
+  transition:
+    transform 600ms cubic-bezier(.2,.7,0,1),
+    opacity 400ms ease;
+  will-change: transform, opacity;
+  /* optional style polish */
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.25));
+}
+
+/* --- Start state: looks like a single, centered card --- */
+.fan-stage.start .card {
+  transform: translate3d(0,0,0) rotate(0deg) scale(1);
+}
+/* hide the “side” copies at start, keep only the middle visible */
+.fan-stage.start .card:nth-child(1),
+.fan-stage.start .card:nth-child(3) {
+  opacity: 0;
+}
+
+/* --- Fan state: three cards spread (fan-out) --- */
+.fan-stage.fan .card:nth-child(1) {          /* left */
+  transform: translate3d(-140px, 0, 0) rotate(-14deg) scale(.96);
+  opacity: 1;
+  transition-delay: 40ms;
+}
+.fan-stage.fan .card:nth-child(2) {          /* middle */
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  opacity: 1;
+  transition-delay: 90ms;
+}
+.fan-stage.fan .card:nth-child(3) {          /* right */
+  transform: translate3d(140px, 0, 0) rotate(14deg) scale(.96);
+  opacity: 1;
+  transition-delay: 140ms;
+}
+
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .fan-stage { width: 280px; height: 280px; }
+  .fan-stage.fan .card:nth-child(1) { transform: translate3d(-100px,0,0) rotate(-12deg) scale(.96); }
+  .fan-stage.fan .card:nth-child(3) { transform: translate3d(100px,0,0) rotate(12deg) scale(.96); }
+}
+
+.three-cakes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 2fr));
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  padding: 12px;
+}
+
+.cake-card {
+  width: 200pxfr;                  /* tweak for your art */
+  image-rendering: pixelated;    /* keeps your pixel style */
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.25));
+  transition: transform .25s ease;
+}
+.cake-card:hover { transform: translateY(-4px) scale(1.02); }

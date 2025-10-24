@@ -7,12 +7,17 @@ import cake80 from "./assets/80.png";
 import cake60 from "./assets/60.png";
 import cake40 from "./assets/40.png";
 import cake20 from "./assets/20.png";
-import birthdayText from "./assets/birthdaytext.png";
+import ali from "./assets/ali.jpeg";
+import ali2 from "./assets/ali2.jpeg";
+import ali3 from "./assets/ali3.PNG"
+
+import birthdayText from "./assets/birthdaytext.jpg";
 import "./App.css";
 import Confetti from "./Confetti";
 import { useEffect, useRef, useState } from "react";
 import birthdaySong from "./assets/bdayaudo.mp3";
-
+import FanOutCakes from "./FanOutCakes";
+import ThreeCakes from "./ThreeCakes";
 
 export default function App() {
   const audioRef = useRef(null);
@@ -208,13 +213,14 @@ export default function App() {
         >
           <div className="ali-card">
             {aliSrc ? (
-              <img src={aliSrc} alt="ali" />
+              <ThreeCakes imgs={[ali, ali2, ali3]} onClick={handleCakeClick} />
             ) : (
               <div style={{ color: "white", padding: 24, fontSize: 20 }}>
                 ali
               </div>
             )}
           </div>
+
         </div>
       )}
     </div>
