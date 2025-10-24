@@ -11,7 +11,7 @@ import ali from "./assets/ali.jpeg";
 import ali2 from "./assets/ali2.jpeg";
 import ali3 from "./assets/ali3.PNG"
 
-import birthdayText from "./assets/birthdaytext.jpg";
+import birthdayText from "./assets/birthdaytext.png";
 import "./App.css";
 import Confetti from "./Confetti";
 import { useEffect, useRef, useState } from "react";
