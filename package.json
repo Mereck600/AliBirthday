@@ -2,6 +2,7 @@
   "name": "ali-birthday",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mereck600.github.io/AliBirthday",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
